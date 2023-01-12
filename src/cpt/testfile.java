@@ -26,39 +26,30 @@ import javafx.scene.layout.HBox;
 
 public class testfile {
     
-    static ObservableList<String> chartData = FXCollections.observableArrayList();
-    static ObservableList<Double> chartPercent = FXCollections.observableArrayList();
-    static ArrayList testData = new ArrayList();
-    static int counter = 0;
+
+
+    static ObservableList chartData = FXCollections.observableArrayList();
+    ObservableList<Double> chartPercent = FXCollections.observableArrayList();
+    int counter = 0;
     static String line = "";
-    static double addDataNum;
+    double addDataNum;
     
-    
-    
-
-
-    public static void main(String[] args) throws IOException {
-        String[] addData = line.split(",");
-        //ObservableList<String> testArray = FXCollections.observableArrayList();
-        //testArray.addAll("hellow", "hit");
+    public static void data (String[] addData){
         
+        dataset myData = new dataset(addData[1], Double.parseDouble(addData[3]));
+        chartData.add(myData);
+
+    }
+    
+    
+    public static void main(String[] args) throws IOException {
         BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
         while((line = readData.readLine()) != null){
             
-            
-            counter++;
-            chartData.add(addData[1]);
-            chartPercent.add(Double.parseDouble(addData[3]));
-            
-        }
+            data(line.split(","));
 
-        for(int i = 0;i<counter;i++){
-            dataset myDataset = new dataset(addData[1], Double.parseDouble(addData[3]));
-            myDataset.add(testData);
         }
-
-        System.out.println(chartData);
-        System.out.print(chartPercent);
+        System.out.println(chartData.toString());
         
         
     }

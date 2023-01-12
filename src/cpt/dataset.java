@@ -6,8 +6,8 @@ public class dataset {
     private double percent;
 
     public dataset(String land, double percentage){
-        country = land;
-        percent = percentage;
+        this.country = land;
+        this.percent = percentage;
     }
     
     public String getCountry(){

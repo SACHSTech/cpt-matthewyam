@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.stage.Stage;
 
 import javafx.scene.chart.BarChart;
@@ -32,56 +33,50 @@ public class main extends Application{
         
     }
 
-    String[] worldData;
+
+    ObservableList<String> chartData = FXCollections.observableArrayList();
+    ObservableList<Double> chartPercent = FXCollections.observableArrayList();
     int counter = 0;
-    String filler;
-    List<String> country = filereader.getCountry();
-    List<Double> percent = filereader.percent;
-  
-    /**
-    ArrayList<String> country = new ArrayList<>();
-    ArrayList<Double> percent = new ArrayList<>();
-    String line = ""; 
+    String line = "";
+    double addDataNum;
+    dataset myData = new dataset("line", 0);
 
     public void hpcFile() throws IOException{
         BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
         while((line = readData.readLine()) != null){
             
             String[] addData = line.split(",");
-            country.add(addData[1]);
-            percent.add(Double.parseDouble(addData[3]));
-
-        }  
+            addDataNum = (Double.parseDouble(addData[3]));
+            counter++;
+            chartData.add(addData[1]);
+            chartPercent.add(Double.parseDouble(addData[3]));
+        }
+        System.out.println(chartData);
     }
-    */
+    
 
-    public void test (String[] args1) throws IOException{
-        System.out.print(country);
-        launch(args1);
+    public void test (String[] args) throws IOException{
+        
+        launch(args);
     }
     
     
     
     @Override
     public void start(Stage stage) throws Exception {
-       /**
+       
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Country");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Percent");
 
         BarChart chartOne = new BarChart(xAxis, yAxis);
-        XYChart.Series dataOneSeries = new XYChart.Series();
-        dataOneSeries.setName("testing");
+        XYChart.Series dataSeries = new XYChart.Series(chartData);
+        dataSeries.setName("test");
         stage.setTitle("Bar Chart");
-        
-        for(int i = 0; i < filereader.country.size(); i++){
-        
-            dataOneSeries.getData().add(new XYChart.Data(country.get(i), percent.get(i)));
-                
-        }
-        
-        chartOne.getData().add(dataOneSeries);
+
+
+        chartOne.getData().add(chartData);
         
         VBox vbox = new VBox(chartOne);
         Scene scene = new Scene(vbox, 400, 200);
@@ -89,7 +84,7 @@ public class main extends Application{
         stage.setHeight(500);
         stage.setWidth(450);
         stage.show();              
-*/
+
     }
 
 }
