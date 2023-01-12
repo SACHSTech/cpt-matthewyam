@@ -1,6 +1,6 @@
 package cpt;
 
-public class dataset {
+public class dataset extends filereader{
 
     private String country;
     private double percent;
@@ -16,5 +16,9 @@ public class dataset {
 
     public double getPercent(){
         return percent;
+    }
+
+    public String toString(){
+        return country + " " + percent;
     }
 }
