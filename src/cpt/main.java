@@ -33,34 +33,6 @@ public class main extends Application{
         
     }
 
-
-    ObservableList<String> chartData = FXCollections.observableArrayList();
-    ObservableList<Double> chartPercent = FXCollections.observableArrayList();
-    int counter = 0;
-    String line = "";
-    double addDataNum;
-    dataset myData = new dataset("line", 0);
-
-    public void hpcFile() throws IOException{
-        BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
-        while((line = readData.readLine()) != null){
-            
-            String[] addData = line.split(",");
-            addDataNum = (Double.parseDouble(addData[3]));
-            counter++;
-            chartData.add(addData[1]);
-            chartPercent.add(Double.parseDouble(addData[3]));
-        }
-        System.out.println(chartData);
-    }
-    
-
-    public void test (String[] args) throws IOException{
-        
-        launch(args);
-    }
-    
-    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -71,12 +43,13 @@ public class main extends Application{
         yAxis.setLabel("Percent");
 
         BarChart chartOne = new BarChart(xAxis, yAxis);
-        XYChart.Series dataSeries = new XYChart.Series(chartData);
+        XYChart.Series dataSeries = new XYChart.Series();
+        
+
         dataSeries.setName("test");
         stage.setTitle("Bar Chart");
 
-
-        chartOne.getData().add(chartData);
+        chartOne.getData().add(dataSeries);
         
         VBox vbox = new VBox(chartOne);
         Scene scene = new Scene(vbox, 400, 200);
