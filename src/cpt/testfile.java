@@ -52,10 +52,9 @@ public class testfile {
 
                 for(int i=0; i < 1; i++){
                     
-                    
                     double chartPercent = (Double.parseDouble(addData[1]));
                     dataset myData = new dataset(addData[0], chartPercent);
-                    chartData1.add(myData);
+                    chartData.add(myData);
                     
                     
                 }
@@ -66,7 +65,7 @@ public class testfile {
             
             
         }
-        System.out.println(chartData1);
+        System.out.println(chartData);
         
         
     }

@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.layout.HBox;
 
-import cpt.readFile.*;
+import cpt.readFile;
 
 public class main extends Application{
 
@@ -40,20 +41,32 @@ public class main extends Application{
 
        
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList());
         xAxis.setLabel("Country");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Percent");
 
-        BarChart chartOne = new BarChart(xAxis, yAxis);
-        XYChart.Series dataSeries = new XYChart.Series();
-        
-        dataSeries.setName("test");
-        stage.setTitle("Bar Chart");
+        XYChart.Series series1 = new XYChart.Series();
 
-        chartOne.getData().add(dataSeries);
+        BarChart<String,Number> barc = new BarChart<String,Number>(xAxis,yAxis);
+        series1.setName("data");       
+        //series1.getData().add(new XYChart.Data("test",123));
+        barc.getData().add(series1);
+
+        for(int i = 0; i < 163;i++){
+            series1.getData().add(new XYChart.Data(chartData(i)));
+        }
         
-        VBox vbox = new VBox(chartOne);
+        /**
+        
+        barChartData.getData().add(new XYChart.Data(readFile.data()));
+        BarChart chartOne = new BarChart(xAxis, yAxis);
+        //chartOne.setData(barChartData);
+        //dataSeries.setData(dataGrabber);
+        //dataSeries.setName("test");
+        stage.setTitle("Bar Chart");
+        //chartOne.getData().add(dataSet);
+        */
+        VBox vbox = new VBox(barc);
         Scene scene = new Scene(vbox, 400, 200);
         stage.setScene(scene);
         stage.setHeight(500);
