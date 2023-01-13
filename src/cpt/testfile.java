@@ -30,11 +30,12 @@ import javafx.scene.layout.HBox;
 
 public class testfile {
     
+    /**
     public static void main(String[] args) throws IOException {
-        ObservableList<dataset> chartData = FXCollections.observableArrayList();
-        ArrayList<dataset> chartData1 = new ArrayList();
-        LinkedHashSet<dataset> set = new LinkedHashSet<>(chartData1);  
-        ArrayList<dataset> chartData1Clean = new ArrayList<>(set);
+        ObservableList<datapoint> chartData = FXCollections.observableArrayList();
+        ArrayList<datapoint> chartData1 = new ArrayList();
+        LinkedHashSet<datapoint> set = new LinkedHashSet<>(chartData1);  
+        ArrayList<datapoint> chartData1Clean = new ArrayList<>(set);
         
 
         
@@ -53,7 +54,7 @@ public class testfile {
                 for(int i=0; i < 1; i++){
                     
                     double chartPercent = (Double.parseDouble(addData[1]));
-                    dataset myData = new dataset(addData[0], chartPercent);
+                    datapoint myData = new datapoint(addData[0], chartPercent);
                     chartData.add(myData);
                     
                     
@@ -69,5 +70,52 @@ public class testfile {
         
         
     }
+    */
+    
+   // public static ObservableList<String> chartData = FXCollections.observableArrayList();
+   // public static ObservableList<Double> chartDataPercent = FXCollections.observableArrayList();
 
+    public static ArrayList<String> chartData = new ArrayList();
+    public static ArrayList<Double> chartDataPercent = new ArrayList();
+        
+    
+    
+    //public void data() throws Exception{
+    public static void main(String[] args) throws IOException{
+    
+        
+        //ArrayList<dataset> chartData1 = new ArrayList();
+
+        BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
+
+        String line = "";
+        int counter = 0;
+
+        while((line = readData.readLine()) != null){
+            
+            String[] addData = line.split(",");
+
+            if(counter != 0){
+                
+                for(int i=0; i < 1; i++){
+
+                    double chartPercent = (Double.parseDouble(addData[1]));
+                    datapoint collectedData = new datapoint(addData[0], chartPercent);
+                    String collectData1 = new String(addData[0]);
+                    
+                    chartData.add(collectData1);
+                    chartDataPercent.add(chartPercent);
+                }
+
+            }
+            counter++;
+        }
+        System.out.println(chartData);
+        System.out.println(chartDataPercent);
+       
+    }
+
+    public ArrayList returnArrList(ArrayList chartData) {
+        return chartData;
+    }
 }

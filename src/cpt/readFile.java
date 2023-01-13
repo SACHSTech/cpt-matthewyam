@@ -11,12 +11,13 @@ import javafx.scene.chart.XYChart;
 
 
 public class readFile {
-
+    
+    public ObservableList<datapoint> chartData = FXCollections.observableArrayList();
     
     public void data() throws Exception{
     
-        ObservableList<dataset> chartData = FXCollections.observableArrayList();
-        ArrayList<dataset> chartData1 = new ArrayList();
+        
+        //ArrayList<dataset> chartData1 = new ArrayList();
 
         BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
 
@@ -32,8 +33,8 @@ public class readFile {
                 for(int i=0; i < 1; i++){
 
                     double chartPercent = (Double.parseDouble(addData[1]));
-                    dataset myData = new dataset(addData[0], chartPercent);
-                    chartData.add(myData);
+                    datapoint collectedData = new datapoint(addData[0], chartPercent);
+                    chartData.add(collectedData);
                 }
 
             }
@@ -42,5 +43,11 @@ public class readFile {
         System.out.println(chartData);
        
     }
+
+    public ObservableList returnArrList(ObservableList chartData) {
+        return chartData;
+    }
+
+
 }
 

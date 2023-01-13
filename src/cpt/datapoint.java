@@ -1,11 +1,11 @@
 package cpt;
 
-public class dataset extends readFile{
+public class datapoint extends readFile{
 
     private String country;
     private double percent;
 
-    public dataset(String land, double percentage){
+    public datapoint(String land, double percentage){
         this.country = land;
         this.percent = percentage;
     }
