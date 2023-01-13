@@ -27,8 +27,14 @@ import javafx.scene.shape.Line;
 import javafx.scene.layout.HBox;
 
 import cpt.readFile;
+import cpt.testfile;
 
 public class main extends Application{
+
+    //ArrayList  country = new testfile().chartData;
+    //ArrayList percent = new testfile().chartDataPercent;
+
+    ObservableList allData = new readFile().chartData;
 
     public static void main(String[] args) throws IOException{
         launch(args);
@@ -50,21 +56,23 @@ public class main extends Application{
         BarChart<String,Number> barc = new BarChart<String,Number>(xAxis,yAxis);
         series1.setName("data");       
         //series1.getData().add(new XYChart.Data("test",123));
-        barc.getData().add(series1);
+        
 
-        for(int i = 0; i < 163;i++){
-            series1.getData().add(new XYChart.Data(chartData(i)));
-        }
+        series1.getData().addAll(new XYChart.Data(allData));
+        barc.getData().addAll(series1);
+        
+
+        
         
         /**
         
         barChartData.getData().add(new XYChart.Data(readFile.data()));
         BarChart chartOne = new BarChart(xAxis, yAxis);
-        //chartOne.setData(barChartData);
-        //dataSeries.setData(dataGrabber);
-        //dataSeries.setName("test");
+        chartOne.setData(barChartData);
+        dataSeries.setData(dataGrabber);
+        dataSeries.setName("test");
         stage.setTitle("Bar Chart");
-        //chartOne.getData().add(dataSet);
+        chartOne.getData().add(dataSet);
         */
         VBox vbox = new VBox(barc);
         Scene scene = new Scene(vbox, 400, 200);
