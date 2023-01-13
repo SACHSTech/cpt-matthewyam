@@ -1,6 +1,6 @@
 package cpt;
 
-public class dataset extends filereader{
+public class dataset extends readFile{
 
     private String country;
     private double percent;

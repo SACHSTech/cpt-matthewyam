@@ -3,8 +3,12 @@ package cpt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -26,30 +30,43 @@ import javafx.scene.layout.HBox;
 
 public class testfile {
     
-
-
-    static ObservableList chartData = FXCollections.observableArrayList();
-    ObservableList<Double> chartPercent = FXCollections.observableArrayList();
-    int counter = 0;
-    static String line = "";
-    double addDataNum;
-    
-    public static void data (String[] addData){
-        
-        dataset myData = new dataset(addData[1], Double.parseDouble(addData[3]));
-        chartData.add(myData);
-
-    }
-    
-    
     public static void main(String[] args) throws IOException {
+        ObservableList<dataset> chartData = FXCollections.observableArrayList();
+        ArrayList<dataset> chartData1 = new ArrayList();
+        LinkedHashSet<dataset> set = new LinkedHashSet<>(chartData1);  
+        ArrayList<dataset> chartData1Clean = new ArrayList<>(set);
+        
+
+        
+
         BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
+
+        String line = "";
+        int counter = 0;
+
         while((line = readData.readLine()) != null){
             
-            data(line.split(","));
+            String[] addData = line.split(",");
 
+            if(counter != 0){
+
+                for(int i=0; i < 1; i++){
+                    
+                    
+                    double chartPercent = (Double.parseDouble(addData[1]));
+                    dataset myData = new dataset(addData[0], chartPercent);
+                    chartData1.add(myData);
+                    
+                    
+                }
+
+            }
+            counter++;
+
+            
+            
         }
-        System.out.println(chartData.toString());
+        System.out.println(chartData1);
         
         
     }

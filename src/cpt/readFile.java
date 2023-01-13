@@ -3,15 +3,20 @@ package cpt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 
 
-public class filereader {
+public class readFile {
 
-    public static void main (String[] args) throws IOException{
+    public void Data () throws IOException{
         
         ObservableList<dataset> chartData = FXCollections.observableArrayList();
+        ArrayList<dataset> chartData1 = new ArrayList();
+
 
         BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
 
@@ -22,17 +27,22 @@ public class filereader {
             
             String[] addData = line.split(",");
 
-            if(counter!=0){
+            if(counter != 0){
+                
+                for(int i=0; i < 1; i++){
 
-                for(int i=0; i < addData.length;i++){
-                    double chartPercent = (Double.parseDouble(addData[3]));
-                    dataset myData = new dataset(addData[1], chartPercent);
-                    chartData.add(myData);
+                    double chartPercent = (Double.parseDouble(addData[1]));
+                    dataset myData = new dataset(addData[0], chartPercent);
+                    chartData1.add(myData);
                 }
+
             }
             counter++;
         }
         System.out.println(chartData);
+        
     }
+
+
 }
 

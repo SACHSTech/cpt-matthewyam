@@ -25,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.layout.HBox;
 
+import cpt.readFile.*;
 
 public class main extends Application{
 
@@ -36,8 +37,10 @@ public class main extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
+
        
         CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setCategories(FXCollections.<String>observableArrayList());
         xAxis.setLabel("Country");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Percent");
@@ -45,7 +48,6 @@ public class main extends Application{
         BarChart chartOne = new BarChart(xAxis, yAxis);
         XYChart.Series dataSeries = new XYChart.Series();
         
-
         dataSeries.setName("test");
         stage.setTitle("Bar Chart");
 
