@@ -77,6 +77,7 @@ public class testfile {
 
     public static ArrayList<String> chartData = new ArrayList();
     public static ArrayList<Double> chartDataPercent = new ArrayList();
+    public static ObservableList<datapoint> allMyData = FXCollections.observableArrayList();
         
     
     
@@ -105,13 +106,16 @@ public class testfile {
                     
                     chartData.add(collectData1);
                     chartDataPercent.add(chartPercent);
+                    allMyData.add(collectedData);
+
                 }
 
             }
             counter++;
         }
-        System.out.println(chartData);
-        System.out.println(chartDataPercent);
+       // System.out.println(chartData);
+       // System.out.println(chartDataPercent);
+        System.out.println(allMyData);
        
     }
 

@@ -33,7 +33,8 @@ public class readFile {
                 for(int i=0; i < 1; i++){
 
                     double chartPercent = (Double.parseDouble(addData[1]));
-                    datapoint collectedData = new datapoint(addData[0], chartPercent);
+                    String chartCountry = addData[0];
+                    datapoint collectedData = new datapoint(chartCountry, chartPercent);
                     chartData.add(collectedData);
                 }
 
