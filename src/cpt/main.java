@@ -31,14 +31,27 @@ import cpt.testfile;
 
 public class main extends Application{
 
-    //ArrayList  country = new testfile().chartData;
-    //ArrayList percent = new testfile().chartDataPercent;
+    //static List country = new testfile().returnChartData();
+    List country = new readFile().returnChartData();
+    List percent = new readFile().returnChartPercent();
+    static int count = 0;
 
-    ObservableList allData = new readFile().chartData;
+    public void importData(){
+        
+        for(int i = 0; i < country.size();i++){
+            
+            count++;
+        }
+        System.out.println(count);
+    }
+
+    
 
     public static void main(String[] args) throws IOException{
         launch(args);
         
+        //System.out.println(country);
+        System.out.println("test");
     }
 
     
@@ -54,12 +67,23 @@ public class main extends Application{
         XYChart.Series series1 = new XYChart.Series();
 
         BarChart<String,Number> barc = new BarChart<String,Number>(xAxis,yAxis);
-        series1.setName("data");       
-        //series1.getData().add(new XYChart.Data("test",123));
+
+        for(int i = 0; i < country.size(); i++){
+            
+            series1.getData().add(new XYChart.Data(country.get(i),percent.get(i)));
+
+        }
+
+        barc.getData().addAll(series1);
+        
+        /**
+        
+        //series1.setName("data");       
+        series1.getData().add(new XYChart.Data("test",123));
         
 
-        series1.getData().addAll(new XYChart.Data(allData));
-        barc.getData().addAll(series1);
+        //series1.getData().addAll(new XYChart.Data());
+        
         
 
         

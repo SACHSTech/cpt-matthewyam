@@ -29,60 +29,12 @@ import javafx.scene.shape.Line;
 import javafx.scene.layout.HBox;
 
 public class testfile {
+     
+    //public ObservableList<datapoint> chartData = FXCollections.observableArrayList();
+    private List<String> chartData = new ArrayList<>();
+    private List<Double> chartPercentage = new ArrayList<>();
     
-    /**
-    public static void main(String[] args) throws IOException {
-        ObservableList<datapoint> chartData = FXCollections.observableArrayList();
-        ArrayList<datapoint> chartData1 = new ArrayList();
-        LinkedHashSet<datapoint> set = new LinkedHashSet<>(chartData1);  
-        ArrayList<datapoint> chartData1Clean = new ArrayList<>(set);
-        
-
-        
-
-        BufferedReader readData = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
-
-        String line = "";
-        int counter = 0;
-
-        while((line = readData.readLine()) != null){
-            
-            String[] addData = line.split(",");
-
-            if(counter != 0){
-
-                for(int i=0; i < 1; i++){
-                    
-                    double chartPercent = (Double.parseDouble(addData[1]));
-                    datapoint myData = new datapoint(addData[0], chartPercent);
-                    chartData.add(myData);
-                    
-                    
-                }
-
-            }
-            counter++;
-
-            
-            
-        }
-        System.out.println(chartData);
-        
-        
-    }
-    */
-    
-   // public static ObservableList<String> chartData = FXCollections.observableArrayList();
-   // public static ObservableList<Double> chartDataPercent = FXCollections.observableArrayList();
-
-    public static ArrayList<String> chartData = new ArrayList();
-    public static ArrayList<Double> chartDataPercent = new ArrayList();
-    public static ObservableList<datapoint> allMyData = FXCollections.observableArrayList();
-        
-    
-    
-    //public void data() throws Exception{
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws Exception{
     
         
         //ArrayList<dataset> chartData1 = new ArrayList();
@@ -101,25 +53,32 @@ public class testfile {
                 for(int i=0; i < 1; i++){
 
                     double chartPercent = (Double.parseDouble(addData[1]));
-                    datapoint collectedData = new datapoint(addData[0], chartPercent);
-                    String collectData1 = new String(addData[0]);
-                    
-                    chartData.add(collectData1);
-                    chartDataPercent.add(chartPercent);
-                    allMyData.add(collectedData);
-
+                    String chartCountry = addData[0];
+                    //datapoint collectedData = new datapoint(chartCountry, chartPercent);
+                    chartData.add(chartCountry);
+                    chartPercentage.add(chartPercent);
                 }
 
             }
             counter++;
         }
-       // System.out.println(chartData);
-       // System.out.println(chartDataPercent);
-        System.out.println(allMyData);
+        returnChartData();
+        returnChartPercent();
+        
        
     }
 
-    public ArrayList returnArrList(ArrayList chartData) {
+    public static List returnChartData() {
+        System.out.println(chartData);
         return chartData;
+        
+
     }
+
+    public static List returnChartPercent(){
+        System.out.println(chartPercentage);
+        return chartPercentage;
+    }
+
+    
 }
