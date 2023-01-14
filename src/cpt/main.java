@@ -31,7 +31,7 @@ import cpt.testfile;
 
 public class main extends Application{
 
-    //static List country = new testfile().returnChartData();
+    List allData = new readFile().returnAllData();
     List country = new readFile().returnChartData();
     List percent = new readFile().returnChartPercent();
     static int count = 0;
@@ -71,10 +71,12 @@ public class main extends Application{
         for(int i = 0; i < country.size(); i++){
             
             series1.getData().add(new XYChart.Data(country.get(i),percent.get(i)));
+            
 
         }
 
         barc.getData().addAll(series1);
+        //barc.getData().addAll(allData);
         
         /**
         

@@ -13,7 +13,7 @@ import javafx.scene.chart.XYChart;
 
 public class readFile {
     
-    //public ObservableList<datapoint> chartData = FXCollections.observableArrayList();
+    private ObservableList<datapoint> allData = FXCollections.observableArrayList();
     private List<String> chartData = new ArrayList<String>();
     private List<Double> chartPercentage = new ArrayList<Double>();
     
@@ -35,8 +35,10 @@ public class readFile {
 
                     double chartPercent = (Double.parseDouble(addData[1]));
                     String chartCountry = addData[0];
+                    datapoint combinedData = new datapoint(chartCountry, chartPercent);
                     chartData.add(chartCountry);
                     chartPercentage.add(chartPercent);
+                    allData.add(combinedData);
                 }
 
             }
@@ -53,6 +55,10 @@ public class readFile {
 
     public List returnChartPercent(){
         return this.chartPercentage;
+    }
+
+    public List returnAllData(){
+        return allData;
     }
 
 
