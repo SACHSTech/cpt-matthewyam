@@ -1,11 +1,11 @@
 package cpt;
 
-public class datapoint extends readFile{
+public class Datapoint extends Reader{
 
     private String country;
     private double percent;
 
-    public datapoint(String land, double percentage){
+    public Datapoint(String land, double percentage) throws Exception{
         this.country = land;
         this.percent = percentage;
     }
