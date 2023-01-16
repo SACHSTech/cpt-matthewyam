@@ -16,7 +16,7 @@ import javafx.scene.chart.PieChart.Data;
 
 public class Reader {
     
-    private ObservableList<Datapoint> allData = FXCollections.observableArrayList();
+    private static ArrayList<Datapoint> allData;
     
     public Reader() throws Exception{ 
 
@@ -36,17 +36,15 @@ public class Reader {
             allData.add(combinedData);
         }
         read.close();
-
-
        
     }
 
-    public ObservableList allData(){
+    public static ArrayList returnAllData(){
         return allData;
     }
 
-
- /**
+/**
+ 
     public void data() throws Exception{ 
 
         BufferedReader read = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
