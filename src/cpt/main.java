@@ -30,6 +30,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -38,10 +40,13 @@ import cpt.testfile;
 
 public class Main extends Application{
 
-    
-    ArrayList<XYChart.Series<String, Number>> insuranceData = Reader.returnAllData();
+    static ArrayList insuranceData =  Reader.returnAllData();
+    static String tester = Reader.returnTEst();
+    static ArrayList portCountries = Reader.returnSendCountry();
     //List percent = new Reader().returnChartPercent();
     static int count = 0;
+
+    static boolean textTrigger = false;
 
     public void importData() throws Exception{
         
@@ -57,9 +62,19 @@ public class Main extends Application{
     public static void main(String[] args) throws IOException{
         launch(args);
         
-        //System.out.println(country);
+        //for(int mainTestLoop = 0; mainTestLoop<insuranceData.size(); mainTestLoop++){
+          // System.out.println(insuranceData.get(mainTestLoop));
+        //}
+
+        System.out.println(portCountries);
+        if(portCountries == null){
+            System.out.println("bruh");
+        }
+
+        //System.out.println(insuranceData.toString());
         System.out.println("test");
 
+        textTrigger = true;
 
     }
 
@@ -67,7 +82,7 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
 
-        //Gridpane and Menu Button
+        //Gridpane
         GridPane area = new GridPane();
         area.setMinSize(1000, 800); 
         area.setPadding(new Insets(10, 10, 10, 10)); 
@@ -76,17 +91,36 @@ public class Main extends Application{
         area.setGridLinesVisible(false);
         area.setVisible(true);
 
+        //Menu Buttons
         Menu charts = new Menu("Charts");
+        Menu reset = new Menu("Reset");
         MenuItem bar = new MenuItem("Bar Chart");
         MenuItem pie = new MenuItem("Pie Chart");
         MenuItem both = new MenuItem("BothCharts");
+        MenuItem confirmReset = new MenuItem("Confirm Reset");
         charts.getItems().add(bar);
         charts.getItems().add(pie);
         charts.getItems().add(both);
+        reset.getItems().add(confirmReset);
 
         MenuBar menuBar = new MenuBar();
         menuBar.getMenus().add(charts);
+        menuBar.getMenus().add(reset);
         area.add(menuBar, 0, 0);
+
+        
+        //Text
+        Text prompt = new Text();
+        prompt.setText("←                               Pick a Chart");
+        prompt.setFont(Font.font(50));
+        area.add(prompt, 1, 0);
+        prompt.setVisible(false);
+
+        if(textTrigger = true){
+            prompt.setVisible(true);
+        }
+        
+        
 
 
        //Bar chart
@@ -104,6 +138,7 @@ public class Main extends Application{
        //sample data to test
         series1.getData().add(new XYChart.Data("test",123));
         series1.getData().add(new XYChart.Data("hello",12));
+        //series1.getData().add(new XYChart.Data(insuranceData, barc));
         barc.setTitle("Healthcare Coverage per Country");
 
         //Pie Chart
@@ -131,6 +166,8 @@ public class Main extends Application{
                 stage.setTitle("Bar Chart");
                 piec.setVisible(false);
                 barc.setVisible(true);
+                prompt.setVisible(false);
+                textTrigger = false;
                 
             }
             
@@ -143,6 +180,8 @@ public class Main extends Application{
                 
                 piec.setVisible(true);
                 barc.setVisible(false);
+                prompt.setVisible(false);
+                textTrigger = false;
             }
             
         });
@@ -150,12 +189,25 @@ public class Main extends Application{
         both.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent show) {
-                stage.setTitle("Pie Chart");
+                stage.setTitle("Both Charts");
                 
                 piec.setVisible(true);
                 barc.setVisible(true);
+                prompt.setVisible(false);
+                textTrigger = false;
             }
             
+        });
+
+        reset.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent show) {
+
+                piec.setVisible(false);
+                barc.setVisible(false);
+                prompt.setVisible(true);
+                textTrigger = true;
+            }
         });
        
 
@@ -164,8 +216,8 @@ public class Main extends Application{
         Scene scene = new Scene(bChart, 1000, 1000);
         stage.setTitle("Healthcare Coverage per Country");
         stage.setScene(scene);
-        stage.setHeight(600);
-        stage.setWidth(1200);
+        stage.setHeight(700);
+        stage.setWidth(1400);
 
         piec.setLabelLineLength(50);
         piec.setLabelsVisible(true);

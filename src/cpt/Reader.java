@@ -5,6 +5,7 @@ package cpt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,10 @@ import javafx.scene.chart.PieChart.Data;
 
 public class Reader {
     
-    private static ArrayList<Datapoint> allData;
+    private static ArrayList<Datapoint> allData = new ArrayList();
+    private static ArrayList sendCountry = new ArrayList();
+    private static ArrayList sendPercent = new ArrayList();
+    private static String testSend = "Hi";
     
     public Reader() throws Exception{ 
 
@@ -29,11 +33,17 @@ public class Reader {
 
             String[] addData = line.split(",");
 
-            Double chartPercent = (Double.parseDouble(addData[1]));
-            String chartCountry = addData[0];
-            
-            Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
-            allData.add(combinedData);
+            for(int i=0; i < 1; i++){
+                Double chartPercent = (Double.parseDouble(addData[1]));
+                String chartCountry = addData[0];
+                
+                Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
+                allData.add(combinedData);
+                sendCountry.add(chartCountry);
+                sendPercent.add(chartPercent);
+                
+            }
+           
         }
         read.close();
        
@@ -41,6 +51,14 @@ public class Reader {
 
     public static ArrayList returnAllData(){
         return allData;
+    }
+
+    public static String returnTEst(){
+        return testSend;
+    }
+
+    public static ArrayList returnSendCountry(){
+        return sendCountry;
     }
 
 /**

@@ -39,110 +39,48 @@ import cpt.testfile;
 public class testfile {
      
     //public ObservableList<datapoint> chartData = FXCollections.observableArrayList();
-    private List<String> chartData = new ArrayList<>();
-    private List<Double> chartPercentage = new ArrayList<>();
+    private static ArrayList<Datapoint> allData;
+    public static ArrayList sendCountry = new ArrayList();
+    //private static ArrayList sendPercent;
+    //private static String testSend = "Hi";
     
     public static void main(String[] args) throws Exception{
+
+            BufferedReader read = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
     
-        Stage stage = new Stage();
+            String line = "";
+            int counter = 0;
+    
+            
+            while((line = read.readLine()) != null){
+    
+                String[] addData = line.split(",");
 
-        //Gridpane and Menu Button
-        GridPane area = new GridPane();
-        area.setMinSize(1000, 800); 
-        area.setPadding(new Insets(10, 10, 10, 10)); 
-        area.setVgap(5); 
-        area.setHgap(5);
-        area.setGridLinesVisible(false);
-        area.setVisible(true);
-
-        Menu charts = new Menu("Charts");
-        MenuItem bar = new MenuItem("Bar Chart");
-        MenuItem pie = new MenuItem("Pie Chart");
-        charts.getItems().add(bar);
-        charts.getItems().add(pie);
-
-        MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().add(charts);
-        area.add(menuBar, 0, 0);
-
-
-        
-        
-
-       //Bar chart
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Country");
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Percent");
-
-        XYChart.Series series1 = new XYChart.Series();
-
-        BarChart<String,Number> barc = new BarChart<String,Number>(xAxis,yAxis);
-
-        barc.getData().addAll(series1);     
-       
-       //sample data to test
-        series1.getData().add(new XYChart.Data("test",123));
-        series1.getData().add(new XYChart.Data("hello",12));
-        barc.setTitle("Healthcare Coverage per Country");
-
-        //Pie Chart
-
-        //Pie Chart Sample Data
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-        new PieChart.Data("Grapefruit", 13),
-        new PieChart.Data("Oranges", 25));
-        PieChart piec = new PieChart(pieChartData);
-        piec.setData(pieChartData);
-
-        piec.setTitle("Healthcare Coverage per Country");
-        piec.setClockwise(true);
-
-        area.add(barc, 45, 30);
-        barc.setVisible(false);
-        area.add(piec,45,30);
-        piec.setVisible(false);
-
-        bar.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent showBar) {
-
-                stage.setTitle("Bar Chart");
-                piec.setVisible(false);
-                barc.setVisible(true);
+                if(counter != 0){
+                
+                    for(int i=0; i < 1; i++){
+                        Double chartPercent = (Double.parseDouble(addData[1]));
+                        String chartCountry = addData[0];
+                        
+                        Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
+                        allData.add(combinedData);
+                        //sendCountry.add(addData[0]);
+                        //sendPercent.add(chartPercent);
+                        
+                    }
+                }
+                counter++;
+                
                 
             }
+            System.out.println(allData.toString());
+            //read.close();
             
-        });
-
-        pie.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent show) {
-                
-                stage.setTitle("Pie Chart");
-                piec.setVisible(true);
-                barc.setVisible(false);
-            }
-            
-        });
-       
-
-       
-        VBox bChart = new VBox(area);
-        Scene scene = new Scene(bChart, 1000, 1000);
-        stage.setTitle("Healthcare Coverage per Country");
-        stage.setScene(scene);
-        stage.setHeight(800);
-        stage.setWidth(1100);
-
-        piec.setLabelLineLength(50);
-        piec.setLabelsVisible(true);
-        piec.setStartAngle(180);
-        
-        stage.show();  
-
+           
     }
     
         
-    }
+}
+
+
     
