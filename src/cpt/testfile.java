@@ -39,9 +39,9 @@ import cpt.testfile;
 public class testfile {
      
     //public ObservableList<datapoint> chartData = FXCollections.observableArrayList();
-    private static ArrayList<Datapoint> allData;
-    public static ArrayList sendCountry = new ArrayList();
-    //private static ArrayList sendPercent;
+    private static ArrayList<Datapoint> allData = new ArrayList<Datapoint>();
+    private static ArrayList sendCountry = new ArrayList();
+    private static ArrayList sendPercent = new ArrayList();
     //private static String testSend = "Hi";
     
     public static void main(String[] args) throws Exception{
@@ -58,14 +58,14 @@ public class testfile {
 
                 if(counter != 0){
                 
-                    for(int i=0; i < 1; i++){
+                    for(int i = 0; i < 1; i++){
                         Double chartPercent = (Double.parseDouble(addData[1]));
                         String chartCountry = addData[0];
                         
                         Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
                         allData.add(combinedData);
-                        //sendCountry.add(addData[0]);
-                        //sendPercent.add(chartPercent);
+                        sendCountry.add(addData[0]);
+                        sendPercent.add(Double.parseDouble(addData[1]));
                         
                     }
                 }
@@ -73,7 +73,9 @@ public class testfile {
                 
                 
             }
-            System.out.println(allData.toString());
+            //System.out.println(sendCountry);
+            //System.out.println(sendPercent);
+            System.out.println(allData);
             //read.close();
             
            

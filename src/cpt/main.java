@@ -41,31 +41,26 @@ import cpt.testfile;
 
 public class Main extends Application{
 
-    static ArrayList insuranceData;
+    Reader dataGrabber;
+    //ArrayList insuranceData = new ArrayList(Reader.returnAllData());
+   //dataGrabber insuranceData = returnAllData().getData();
     static String tester = Reader.returnTEst();
-    static ArrayList<String> portCountries = new ArrayList<String>(Reader.returnSendCountry());
+    //ArrayList<String> listCountry = new ArrayList<String>(Reader.returnSendCountry());
     //List percent = new Reader().returnChartPercent();
 
-    static int count = 0;
+    int count = 0;
 
     static boolean textTrigger = false;
-
-    public static void importData() throws Exception{
-        
-        for(int i = 0; i < 100;i++){
-
-            count++;
-        }
-        System.out.println(count);
-    }
-
     
 
     public static void main(String[] args) throws Exception{
+
+        
+        
         launch(args);
 
-        System.out.println(insuranceData.toString());
-        if(insuranceData == null){
+        System.out.println(tester.toString());
+        if(tester == null){
             System.out.println("bruh");
         }
 
@@ -73,15 +68,17 @@ public class Main extends Application{
 
         System.out.println("test");
 
-        textTrigger = true;
-
-        
+        textTrigger = true; 
 
     }
 
     
     @Override
     public void start(Stage stage) throws Exception {
+        dataGrabber = new Reader();
+
+        dataGrabber.returnSendCountry();
+        dataGrabber.returnSendPercent();
 
         //Gridpane
         GridPane area = new GridPane();
@@ -134,14 +131,11 @@ public class Main extends Application{
 
         BarChart<String,Number> barc = new BarChart<String,Number>(xAxis,yAxis);
 
-        barc.getData().addAll(Reader.dataImporter);     
+        barc.getData().addAll(series1);     
        
-       //sample data to test
-        //series1.getData().add(new XYChart.Data("test",123));
-        //series1.getData().add(new XYChart.Data("hello",12));
-        //series1.getData().add(new XYChart.Data(insuranceData, barc));
-        Reader.returnExWhy();
-
+        for(int loop = 0; loop  < dataGrabber.returnSendCountry().size(); loop++){
+            series1.getData().add(new XYChart.Data(dataGrabber.returnSendCountry().get(loop), dataGrabber.returnSendPercent().get(loop)));
+        }
         
 
         barc.setTitle("Healthcare Coverage per Country");
@@ -149,9 +143,10 @@ public class Main extends Application{
         //Pie Chart
 
         //Piechart sample data
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-        new PieChart.Data("Grapefruit", 13),
-        new PieChart.Data("Oranges", 25));
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        
+        //new PieChart.Data("Grapefruit", 13),
+        //new PieChart.Data("Oranges", 25));
         
         //Creates Piechart
         PieChart piec = new PieChart(pieChartData);

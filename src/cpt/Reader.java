@@ -13,16 +13,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.chart.XYChart.Series;
 
 
-public class Reader {
+public class Reader{
     
-    private static ArrayList<Datapoint> allData = new ArrayList();
-    private static ArrayList sendCountry = new ArrayList();
-    private static ArrayList sendPercent = new ArrayList();
+    private ArrayList<Datapoint> allData;
+    private ArrayList<String> sendCountry;
+    private ArrayList<Double> sendPercent;
+    
     private static String testSend = "Hi";
+    static XYChart.Series dataImporter = new XYChart.Series();
+
     
     public Reader() throws Exception{ 
+
+        allData = new ArrayList<Datapoint>();
+        sendCountry = new ArrayList<String>();
+        sendPercent = new ArrayList<Double>();
 
         BufferedReader read = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
 
@@ -33,32 +41,43 @@ public class Reader {
 
             String[] addData = line.split(",");
 
-            for(int i=0; i < 1; i++){
-                Double chartPercent = (Double.parseDouble(addData[1]));
-                String chartCountry = addData[0];
-                
-                Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
-                allData.add(combinedData);
-                sendCountry.add(chartCountry);
-                sendPercent.add(chartPercent);
-                
+            if(counter != 0){
+                for(int i=0; i < 1; i++){
+                    Double chartPercent = (Double.parseDouble(addData[1]));
+                    String chartCountry = addData[0];
+                    
+                    Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
+                    allData.add(combinedData);
+                    sendCountry.add(chartCountry);
+                    sendPercent.add(chartPercent);
+                    dataImporter.getData().add(new XYChart.Data(chartCountry,chartPercent));
+                    
+                }
+              
             }
-           
+            counter++;
         }
         read.close();
        
     }
 
-    public static ArrayList returnAllData(){
-        return allData;
+    public ArrayList<Datapoint> returnAllData(){
+        return this.allData;
     }
 
     public static String returnTEst(){
         return testSend;
     }
 
-    public static ArrayList returnSendCountry(){
-        return sendCountry;
+    public ArrayList<String> returnSendCountry(){
+        return this.sendCountry;
+    }
+    public  ArrayList<Double> returnSendPercent(){
+        return this.sendPercent;
+    }
+
+    public XYChart.Series returnExWhy(){
+        return dataImporter;
     }
 
 /**
