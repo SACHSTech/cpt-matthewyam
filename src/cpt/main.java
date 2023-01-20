@@ -43,7 +43,7 @@ public class Main extends Application{
 
     Reader dataGrabber;
     //ArrayList insuranceData = new ArrayList(Reader.returnAllData());
-   //dataGrabber insuranceData = returnAllData().getData();
+    //dataGrabber insuranceData = returnAllData().getData();
     static String tester = Reader.returnTEst();
     //ArrayList<String> listCountry = new ArrayList<String>(Reader.returnSendCountry());
     //List percent = new Reader().returnChartPercent();
@@ -94,7 +94,7 @@ public class Main extends Application{
         Menu reset = new Menu("Reset");
         MenuItem bar = new MenuItem("Bar Chart");
         MenuItem pie = new MenuItem("Pie Chart");
-        MenuItem both = new MenuItem("BothCharts");
+        MenuItem both = new MenuItem("Both Charts");
         MenuItem confirmReset = new MenuItem("Confirm Reset");
         charts.getItems().add(bar);
         charts.getItems().add(pie);
@@ -144,8 +144,14 @@ public class Main extends Application{
 
         //Piechart sample data
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
         
-        //new PieChart.Data("Grapefruit", 13),
+        for(int pieLoop = 0; pieLoop < dataGrabber.returnSendCountry().size(); pieLoop++){
+            pieChartData.add(new PieChart.Data (dataGrabber.returnSendCountry().get(pieLoop), dataGrabber.returnSendPercent().get(pieLoop)));
+        }
+        
+        
+        
         //new PieChart.Data("Oranges", 25));
         
         //Creates Piechart

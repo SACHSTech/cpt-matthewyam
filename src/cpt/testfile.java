@@ -46,8 +46,11 @@ public class testfile {
     
     public static void main(String[] args) throws Exception{
 
+
+        
+
             BufferedReader read = new BufferedReader(new FileReader("src/cpt/hpc.csv"));
-    
+ //   /** 
             String line = "";
             int counter = 0;
     
@@ -56,29 +59,30 @@ public class testfile {
     
                 String[] addData = line.split(",");
 
-                if(counter != 0){
+                //if(counter != 0){
                 
                     for(int i = 0; i < 1; i++){
                         Double chartPercent = (Double.parseDouble(addData[1]));
                         String chartCountry = addData[0];
                         
-                        Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
-                        allData.add(combinedData);
+                        
                         sendCountry.add(addData[0]);
                         sendPercent.add(Double.parseDouble(addData[1]));
                         
                     }
-                }
-                counter++;
+                //}
+               // counter++;
                 
                 
             }
-            //System.out.println(sendCountry);
+            System.out.println(sendCountry);
             //System.out.println(sendPercent);
-            System.out.println(allData);
+            System.out.println(sendCountry);
             //read.close();
             
-           
+    //       */
+
+          // System.out.println(read.toString());
     }
     
         

@@ -23,7 +23,6 @@ public class Reader{
     private ArrayList<Double> sendPercent;
     
     private static String testSend = "Hi";
-    static XYChart.Series dataImporter = new XYChart.Series();
 
     
     public Reader() throws Exception{ 
@@ -46,11 +45,8 @@ public class Reader{
                     Double chartPercent = (Double.parseDouble(addData[1]));
                     String chartCountry = addData[0];
                     
-                    Datapoint combinedData = new Datapoint(chartCountry, chartPercent);
-                    allData.add(combinedData);
                     sendCountry.add(chartCountry);
                     sendPercent.add(chartPercent);
-                    dataImporter.getData().add(new XYChart.Data(chartCountry,chartPercent));
                     
                 }
               
@@ -76,9 +72,6 @@ public class Reader{
         return this.sendPercent;
     }
 
-    public XYChart.Series returnExWhy(){
-        return dataImporter;
-    }
 
 /**
  
@@ -127,4 +120,3 @@ public class Reader{
     }
     */
 }
-
