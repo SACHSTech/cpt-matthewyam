@@ -1,5 +1,1 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=9680322&assignment_repo_type=AssignmentRepo)
-# ICS4U CPT (Edit this)
-
-* Place your project README details here
-* Check the [VS Code, Java, and JavaFX Install and Set Up](https://docs.google.com/document/d/1s5oTmY8A8TDZu303p_DaH6CEAcC9xL8-aNX-pAxCcps/edit?usp=sharing) doc for set up and getting started instructions.
+The [Dataset](https://ourworldindata.org/grapher/health-protection-coverage) I am using here is about healthcare insurace coverage of the people of the world from Our World in Data.  The data shows how many percent of people are covered by health insurance in every country of the world.  The reason that I chose this dataset was because during the time I was selecting my data, I saw on Reddit that people around the world were comparing their healthcare insurance/free healthcare to American healthcare and talking about how bad America is at healthcare.  That got me thinking about how many people in the world have free healthcare or good healthcare insurance.
