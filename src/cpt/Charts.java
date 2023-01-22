@@ -27,6 +27,12 @@ import javafx.scene.layout.GridPane;
 
 public class Charts extends Application{
 
+    /**
+     * @param dataGrabber - data puller for reader class
+     * @param counter - counter
+     * @param textTrigger - trigger to show/hide text
+     */
+
     //Declare Variables
     Reader dataGrabber;
     int count = 0;
@@ -155,7 +161,6 @@ public class Charts extends Application{
             @Override
             public void handle(ActionEvent show) {
                 stage.setTitle("Pie Chart");
-                
                 piec.setVisible(true);
                 barc.setVisible(false);
                 pick.setVisible(false);
@@ -169,7 +174,6 @@ public class Charts extends Application{
             @Override
             public void handle(ActionEvent show) {
                 stage.setTitle("Both Charts");
-                
                 piec.setVisible(true);
                 barc.setVisible(true);
                 pick.setVisible(false);
@@ -182,7 +186,7 @@ public class Charts extends Application{
         clear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent show) {
-
+                stage.setTitle("Insurance Coverage");
                 piec.setVisible(false);
                 barc.setVisible(false);
                 pick.setVisible(true);

@@ -4,23 +4,24 @@ package cpt;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class Reader{
-    
-    //Creates arrrays for my two values
 
     /**
      * @param sendCountry - country name
      * @param sendPerdent - percent of people vaccinated
      */
+
+    //Creates arrrays for my two values
     private ArrayList<String> sendCountry;
     private ArrayList<Double> sendPercent;
 
 
     //Reader class
-    public Reader() throws Exception{ 
+    public Reader() throws NumberFormatException, IOException{ 
 
         //Initialize my Arrays
         sendCountry = new ArrayList<String>();
@@ -37,6 +38,7 @@ public class Reader{
 
             
             String[] addData = line.split(",");
+           
 
             //Loop to add data to my arrays
             if(counter != 0){
@@ -60,7 +62,8 @@ public class Reader{
     public ArrayList<String> returnSendCountry(){
         return this.sendCountry;
     }
-    public  ArrayList<Double> returnSendPercent(){
+    public ArrayList<Double> returnSendPercent(){
         return this.sendPercent;
     }
+
 }
