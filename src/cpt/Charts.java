@@ -1,5 +1,6 @@
 package cpt;
 
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,11 +41,15 @@ public class Charts extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
+
+        
         
         //Pull data from bufferreader file
         dataGrabber = new Reader();
         dataGrabber.returnSendCountry();
         dataGrabber.returnSendPercent();
+        dataGrabber.returnInsuranceData();
+        
 
         //Creates a Gridpane to place objeccts
         GridPane area = new GridPane();
